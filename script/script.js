@@ -1,221 +1,144 @@
-function turnOn() {
-    soundClick();
-    switchOn = true;
-    mirrorDisplay();
-    output.value = "0";
-    storage = "";
-    buf = "";
-}
+var numbArray ; 			//массив из чисел для ПУЗЫРЕЙ появляется после проверки
+var count = 0;			  	//введёного массива функцией checkArray
+var massAnswer = [];		//хранилище массива массивов хода сортировки
+var sortedArray;            //остортированный массив(стандартной сортировкой)
 
-function turnOff() {
-        switchOn = false;
-        soundclick = false;
-        output.value = "";
-        storage = "";
-        buf = "";
-        noteDisplay();
-        mirrorDisplay();
-}
+//переопределение поиска по id на $
+var $ = function(id) {		
+	return document.getElementById(id);
+};
 
-function soundClick() {
-    if (soundclick) {
-        beep.play();
-    }
-}
+var userArray = $( 'userArray' );
+var check = $( 'check' );
+var step = $( 'step' );
+var reset = $( 'reset' );
+var bubbles = $( 'bubbles' );
+var obrazec = $( 'obrazec' );
+var whatis = $( 'wtf' );
+var quest = $( 'question' );
+var close = $( 'close' );
 
-function muteOrPlay() {
-    if (switchOn == true) {
-        soundclick = soundclick != true;
-        noteDisplay();
-    }
-}
 
-function mirrorDisplay() {
-    if (switchOn == true) {
-        mirror.classList.remove("nondisplay");
-        mirror.classList.add("display");
-        output.classList.add("shadowOn");
-    }  else {
-        mirror.classList.remove("display");
-        mirror.classList.add("nondisplay");
-        output.classList.remove("shadowOn");
-    }
-}
+whatis.addEventListener( 'click', whatisThis);
+close.addEventListener( 'click', whatisThis );
+check.addEventListener( 'click', checkArray );
+step.addEventListener( 'click', stepForward );
+reset.addEventListener( 'click', resetArray );
 
-function noteDisplay() {
-    if (switchOn == true) {
-        if(note.classList.contains("nondisplay")) {
-            note.classList.remove("nondisplay");
-            note.classList.add("display");
-        } else {
-            note.classList.remove("display");
-            note.classList.add("nondisplay");
-        }
+function whatisThis() {
+    if(quest.classList.contains("nondisplay")) { //если окно скрыто
+        quest.classList.remove("nondisplay");
+        quest.classList.add("display");          //показать его
+
+        whatis.style.backgroundImage = "url('./img/cancel.png')";
+
     } else {
-        note.classList.remove("display");
-        note.classList.add("nondisplay");
+        quest.classList.remove("display");      //если окно открыто
+        quest.classList.add("nondisplay");      //закрыть
+
+        whatis.style.backgroundImage = "url('./img/info_5320.png')";
     }
 }
 
+function isNumeric(n) {
+	return !isNaN( parseFloat(n) ) && isFinite(n);
+}
 
-function numPressed() {
-    soundClick();
-    if(switchOn) {
-        try {
-            if(buf.length < maxD) {
-                buf += this.value;
-                storage += this.value;
-                output.value = buf;
+function checkArray() {
+	var myArray = userArray.value.split( /\s*,\s*/ );
+    var alrdSort = JSON.parse(JSON.stringify(myArray)).sort(compareNumb);
+    sortedArray = alrdSort;
+	if ( myArray.join(',') == alrdSort.join(',') && myArray.every( isNumeric )) { 
+		alert('Массив уже отсортирован!');
+		userArray.value = '';
+	} else if( myArray.every( isNumeric ) ) {
+		numbArray = myArray;
+
+        //создает контейнеры для введённого массива
+		for (var i = 0; i < numbArray.length; i++) {
+			var div = document.createElement('div');
+			div.className='divSimp';
+			div.id = 'element' + i;
+			obrazec.appendChild(div);
+			div.innerHTML = numbArray[i];
+		}
+
+		//создает контейнеры для сортируемого массива
+		for (var p = 0; p < numbArray.length; p++) {
+			var divSorted = document.createElement('div');
+			divSorted.className='divAns';
+			divSorted.id = 'answer' + p;
+			bubbles.appendChild(divSorted);
+			divSorted.innerHTML = numbArray[p];
+		}
+
+
+		check.style.visibility = 'hidden';
+		userArray.style.visibility = 'hidden';
+		step.style.visibility = 'visible';
+		reset.style.visibility = 'visible';
+
+		bubbleSort();
+
+	} else if( userArray.value === '' ) {
+		alert('Введите числа!');
+	} else {
+		userArray.value = '';
+		alert( 'Только числа!' );
+	}
+}
+
+function compareNumb(a, b) {
+	return a - b;
+}
+
+function resetArray() { 	
+ 	userArray.value = '';
+ 	numbArray = '';
+    bubbles.innerHTML = '';
+    obrazec.innerHTML = '';
+ 	count = 0;
+ 	massAnswer.length = 0;
+    userArray.style.visibility = 'visible';
+	check.style.visibility = 'visible';
+	step.style.visibility = 'hidden';
+	reset.style.visibility = 'hidden';
+}
+
+function bubbleSort() {
+	var p =[];					//временный массив
+    var tmp;					//буфер для обмена значениями
+    var storage = '';			// временное хранилище массива массивов хода сортировки
+
+  for (var i = numbArray.length - 1; i > 0; i--) {
+        for (var j = 0; j < i; j++) {
+            if (+numbArray[j] > +numbArray[j+1]) {
+
+                tmp = numbArray[j];
+                numbArray[j] = numbArray[j+1];
+                numbArray[j+1] = tmp;
+
+               storage += numbArray + ' ';
+					p = storage.split(' ');
+					p.splice(p.length-1, 1);
             }
         }
-        catch (maxD){
-            output.value = buf;
-        }
     }
+    for(var t = 0; t < p.length; t++) {
+ 		massAnswer.push(p[t].split(',')); 	 //формирование массива массивов из строк сортировки
+    }  
 }
 
-function toEqual() {
-    soundClick();
-    if(switchOn) {
-        try {
-            if (catchError(storage, output)) {
-                storage = "";
-                output.value = 0;
-            } else {
-                output.value = (+(eval(storage)).toPrecision(dotLength));
-                storage = output.value;
+function stepForward() {
+		if ( count < massAnswer.length) {
+ 			for (var i = 0; i < numbArray.length; i++) {
+				var div = document.getElementById('answer' + i);
+				div.innerHTML = massAnswer[count][i];
+			}
+            if (sortedArray.toString() === massAnswer[count].toString()) {
+                alert('Массив отсортирован!');
             }
-        } catch (Error) {
-            storage = "";
-            buf = "";
-            output.value = "Error";
+         count++;
         }
-    }
 }
 
-function toPlus() {
-    soundClick();
-    if(switchOn) {
-        try {
-            if(catchError(storage, output)) {
-                output.value = storage =  "+";
-            } else {
-                storage = eval(storage) + "+";
-                outputValue();
-                buf = "";
-            }
-        } catch (doublePlus) {
-            outputValue();
-        }
-    }
-}
-
-function toMinus() {
-    soundClick();
-    if(switchOn) {
-        try {
-            if(catchError(storage, output)) {
-                output.value = storage =  "-";
-            } else {
-                storage = eval(storage) + "-";
-                outputValue();
-                buf = "";
-            }
-        } catch (doubleMinus) {
-            outputValue();
-        }
-    }
-}
-
-function toMultiply() {
-    soundClick();
-    if(switchOn) {
-        try {
-            if(catchError(storage, output)) {
-                output.value = storage =  0;
-            } else {
-                storage = eval(storage) + "*";
-                outputValue();
-                buf = "";
-            }
-        } catch (doubleMultiply) {
-            outputValue();
-        }
-    }
-}
-
-function toDivide() {
-    soundClick();
-    if (switchOn) {
-        try {
-            if (catchError(storage, output)) {
-                output.value = storage = 0;
-            } else {
-                storage = eval(storage) + "/";
-                outputValue();
-                buf = "";
-            }
-        } catch (doubleMultiply) {
-            outputValue();
-        }
-    }
-}
-
-function getSqrt() {
-    soundClick();
-    if (switchOn) {
-        if(storage[0] === "-"  || isNaN(output.value)) {
-            output.value = "Error";
-            storage = "";
-            buf = "";
-
-        } else {
-            output.value = eval(Math.sqrt(+storage));
-            storage = output.value;
-            buf = "";
-        }
-    }
-}
-
-function getSqr() {
-    soundClick();
-    if(switchOn) {
-        if(catchError(storage, output)) {
-            output.value = storage =  "0";
-        } else {
-            storage = eval(parseFloat(storage)) * eval(parseFloat(storage)) ;
-            outputValue();
-            buf = "";
-        }
-    }
-}
-
-function catchError(stor, outp) {
-    if( stor == "undefined"
-        ||  stor == ""
-        ||  isNaN(stor) && typeof(stor) !== "string"
-        || isNaN(outp.value)) {
-        return true;
-    }
-}
-
-function outputValue() {
-    output.value = parseFloat(storage);
-}
-
-function toDot() {
-    soundClick();
-    if (switchOn) {
-        if (buf == "") {
-            output.value = ".";
-            storage += ".";
-            buf += "0.";
-        } else if (buf.match(/^\d*\.\d*$/)) {
-            console.log("В числе может быть только одна точка");
-        } else {
-            storage += ".";
-            buf += ".";
-            output.value += ".";
-        }
-    }
-}

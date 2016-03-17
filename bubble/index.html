@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <title>Bubble sort</title>
+	<link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+    <div id="wtf">
+    </div>
+    <div class="nondisplay" id="close">
+    </div>
+    <div class="nondisplay" id="question">
+        <span class="text">Сортировка пузырьком - самый естественный, он же самый медленный алгоритм сортировки. Алгоритм пузырьковой сортировки просматривает массив чисел от начала до конца до тех пор, пока любые два рядом стоящих числа не будут расположены по возрастанию. Для этого два неверно расположенные одно относительно другого числа меняются местами. При этом наименьшее число, как пузырёк, постепенно всплывает к началу массива (а наибольшее сразу "тонет" как камень!), отсюда и название алгоритма. Время сортировки пузырьком пропорционально квадрату количества чисел в массиве.</span>
+    </div>
+    <div id="wrapper">
+        <h3><a  title="wiki" href="https://ru.wikipedia.org/wiki/%D0%A1%D0%BE%D1%80%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0_%D0%BF%D1%83%D0%B7%D1%8B%D1%80%D1%8C%D0%BA%D0%BE%D0%BC" target="_blank">Bubble Sort</a></h3>
+        <p>Введите числа через запятую</p>
+            <div id="inp">
+                <input type="text" id="userArray" placeholder="10,9,8,7,6,5,4,3,2,1" autofocus>
+                <div id="check">   </div><br/>
+                <div id="step">Шаг вперёд</div>
+                <div id="reset">Cброс</div>
+                <div id="obrazec"></div>
+                <div id="bubbles"></div>
+            </div>
+    </div>
+    <script src="script/script.js"></script> <!--program-->
+</body>
+</html>

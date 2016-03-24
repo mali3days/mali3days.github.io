@@ -24,13 +24,13 @@ startY = 0,
 startX = 0,
 lengthOfMaze = Maze.length;
 
-rect(size,size-16,size,size,'red');
-rect(size*10,11*size,size,size,'green');
 for(var i = 0;i<lengthOfMaze;i++){
     for(var j = 0;j<lengthOfMaze;j++){
         rect(size*j,size*i,size,size,blackOrWhite((Maze[i][j])));
     }
 }
+rect(size,size-16,size,size,'red');
+rect(size*10,11*size,size,size,'green');
 
 function rect(x,y,w,h,color){
     context.fillStyle = color;

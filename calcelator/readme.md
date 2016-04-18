@@ -1,1 +1,1 @@
-O_o
+http://mali3days.github.io/calcelator/

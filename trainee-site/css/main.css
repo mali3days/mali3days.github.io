@@ -1,0 +1,262 @@
+*::-webkit-input-placeholder {
+    color: #666;
+    opacity: 1;
+}
+*:-moz-placeholder {
+    color: #666;
+    opacity: 1;
+}
+*::-moz-placeholder {
+    color: #666;
+    opacity: 1;
+}
+*:-ms-input-placeholder {
+    color: #666;
+    opacity: 1;
+}
+
+body input:focus:required:invalid,
+body textarea:focus:required:invalid {
+    border: #ff0000 3px solid;
+
+}
+body input:required:valid,
+body textarea:required:valid {
+    border: #008000 3px solid;
+}
+body {
+    font-family: "RobotoRegular", sans-serif;
+    font-size: 16px;
+}
+
+.header_topline {
+    background-color: #43484C;
+    padding: 15px 0;
+    color: #fff;
+}
+
+.header_topline a {
+    padding: 15px 0;
+    color: #fff;
+}
+
+.top_links {
+    display: inline-block;
+    vertical-align: middle;
+    z-index: 1;
+}
+
+.top_links a {
+    text-decoration: underline;
+}
+
+.top_links a:hover {
+    text-decoration: none;
+}
+
+.soc_buttons {
+    float: right
+}
+
+.soc_buttons > a {
+    font-size: 26px;
+    margin-left: 8px;
+}
+
+.auth_buttons,
+.main_mnu_button {
+    border: none;
+    background-color: transparent;
+    font-size: 32px;
+}
+
+.main_mnu_button {
+    color: #fff;
+    padding: 8px 15px 0;
+}
+
+.logo {
+    display: block;
+    padding: 15px 0;
+    color: #fff;
+    font-family: "NautilusPompiliusRegular", serif;
+    font-size: 42px;
+    text-align: center;
+}
+
+.top_header {
+    background-color: #4AAAD2;
+}
+
+.main_mnu {
+    background-color: #3797bf;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.main_mnu a {
+    color: #fff;
+    padding: 15px;
+    display: block;
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
+}
+
+.main_mnu a:hover {
+    background-color: #2787af;
+}
+
+.main_mnu ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    float: left;
+    text-transform: uppercase;
+    z-index: 2;
+}
+
+.main_mnu ul li {
+    display: inline-block
+}
+
+.top_contacts {
+    float: right;
+    font-size: 32px;
+    padding: 0 15px;
+    background-color: #2787af;
+    line-height: 53px;
+}
+
+h1 {
+    color: #fff;
+    text-transform: uppercase;
+    text-align: center;
+    font-family: "RobotoCondensedLight", serif
+}
+
+.slider_container {
+    position: relative;
+    padding-bottom: 20px;
+}
+
+.slider_container img {
+    max-width: 100%;
+}
+
+.prev_button,
+.next_button {
+    color: white;
+    font-size: 46px;
+    position: absolute;
+    z-index: 1;
+    cursor: pointer;
+    top: 40%;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 0 25px;
+    border-radius: 50%;
+}
+
+.prev_button {
+    left: 20px;
+}
+
+.next_button {
+    right: 20px;
+}
+
+section.order {
+    background-color: #eee;
+    padding: 25px 0;
+}
+
+.sell_descr {
+    font-size: 22px;
+    padding-top: 5px;
+}
+
+.button {
+    display: block;
+    border: none;
+    background-color: #2BC6A4;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.button:hover {
+    background-color: #4FEAC8;
+}
+
+.button:active {
+    background-color: #14AF8D;
+}
+
+.sell_right .button {
+    float: right;
+}
+
+.hidden {
+    display: none
+}
+
+.pop_form input[type="text"] {
+    display: block;
+    width: 90%;
+    line-height: 24px;
+    margin: 0 auto 12px;
+    border: #999 3px solid;
+}
+
+.pop_form .button {
+    margin: 20px auto 0;
+}
+
+.pop_form h3 {
+    margin: 10px auto 15px;
+    text-align: center;
+    font-weight: normal;
+    font-family: "RobotoCondensedBold", serif;
+    text-transform: uppercase;
+}
+
+.blog_item img {
+    max-width: 100%;
+    margin-bottom: 20px;
+}
+
+.blog_item h3 {
+    text-transform: uppercase;
+    font-family: "RobotoCondensedRegular", serif;
+
+}
+
+.blog_item h3 a {
+    text-decoration: underline;
+}
+
+.blog_item p {
+    margin-top: 0;
+}
+
+.right_aside {
+    padding: 15px 20px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background-color: #ECECEC;
+    margin-top: 30px;
+}
+
+.footer_bottom {
+    background-color: #43484C;
+    color: #fff;
+}
+
+.footer_text {
+    display: inline-block;
+    float: right;
+}

@@ -1,0 +1,492 @@
+.c-fromto {
+  background: #cdd119 !important;
+  border-color: #b6b91f !important;
+}
+.currentMonth {
+  display: block;
+  float: left;
+}
+.clearDates {
+  display: block;
+  float: right;
+}
+.clearDates,
+.currentMonth {
+  height: 25px;
+}
+.controlButtWrap {
+  border-radius: 3px;
+  width: 194px;
+  padding: 10px;
+  border: 1px solid #bbbbbb;
+  text-align: center;
+  margin: 15px 5px 5px;
+  font-size: 12px;
+}
+.c-control {
+  width: 212px;
+  height: 20px;
+  margin: 0 5px 5px;
+  text-align: center;
+  border: 1px solid gray;
+  height: 25px;
+  border-radius: 0 0 5px 5px;
+}
+.now {
+  vertical-align: middle;
+  font-size: 13px;
+}
+.clearDates,
+.currentMonth {
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #393939), color-stop(100%, #202020));
+  background: -webkit-linear-gradient(#393939, #202020);
+  background: -moz-linear-gradient(#393939, #202020);
+  background: -o-linear-gradient(#393939, #202020);
+  background: linear-gradient(#393939, #202020);
+  -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset, 0 1px 1px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset, 0 1px 1px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset, 0 1px 1px rgba(0, 0, 0, 0.3);
+  -webkit-border-radius: 3px 3px 0 0;
+  -moz-border-radius: 3px 3px 0 0;
+  -ms-border-radius: 3px 3px 0 0;
+  -o-border-radius: 3px 3px 0 0;
+  border-radius: 0 0 3px 3px;
+  background-color: #393939;
+  border: 1px solid black;
+  color: #e0e0e0;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.9);
+}
+.clearDates:hover,
+.currentMonth:hover {
+  cursor: pointer;
+}
+.controlButtWrap {
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #e7e7e7), color-stop(100%, #d9d9d9));
+  background: -webkit-linear-gradient(#e7e7e7, #d9d9d9);
+  background: -moz-linear-gradient(#e7e7e7, #d9d9d9);
+  background: -o-linear-gradient(#e7e7e7, #d9d9d9);
+  background: linear-gradient(#e7e7e7, #d9d9d9);
+}
+/** Base container CALENDAR **/
+.calendar {
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+  background: #eee;
+  padding: 10px;
+  margin: 5px 5px 0;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  font-size: 11px;
+  font-family: 'Helvetica Neue', 'Helvetica';
+  cursor: default;
+  position: relative;
+}
+/** Popup Container for calendar.Input **/
+.calendar.c-floating {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100000;
+  margin: 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.75);
+}
+/** calendar.Input's popup close button **/
+.calendar .c-btn-close {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 16px;
+  height: 16px;
+  background: white;
+  border: 2px solid #ccc;
+  color: #999;
+  line-height: 17px;
+  text-align: center;
+  font-size: 13px;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.75);
+  cursor: pointer;
+}
+.calendar .c-btn-close:after {
+  content: "\2716";
+}
+.calendar .c-btn-close:hover {
+  color: #7EA0E2;
+  background: white;
+  border-color: #7EA0E2;
+}
+/** Month Container **/
+.calendar .c-calendar {
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+  width: 155px;
+  vertical-align: top;
+}
+/** Month Separator **/
+.calendar .c-separator {
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+  width: 2px;
+  vertical-align: top;
+  background: #ddd;
+  height: 155px;
+  margin: 0 10px;
+}
+/** Month Title Row **/
+.calendar .c-title {
+  text-align: center;
+  white-space: nowrap;
+  position: relative;
+  height: 18px;
+}
+.calendar .c-caption {
+  font-size: 12px;
+  line-height: 18px;
+}
+/** Month and Year Buttons **/
+.calendar .c-btn-next-month,
+.calendar .c-btn-next-year,
+.calendar .c-btn-previous-month,
+.calendar .c-btn-previous-year {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  color: #777;
+  font-size: 20px;
+  line-height: 14px;
+}
+.calendar .c-btn-previous-year {
+  left: 0;
+}
+.calendar .c-btn-previous-month {
+  left: 16px;
+}
+.calendar .c-btn-next-month {
+  right: 16px;
+}
+.calendar .c-btn-next-year {
+  right: 0;
+}
+.calendar .c-btn-previous-month:after {
+  content: "\276E";
+}
+.calendar .c-btn-next-month:after {
+  content: "\276F";
+}
+.calendar .c-btn-previous-year:after {
+  content: "\276E\276E";
+}
+.calendar .c-btn-next-year:after {
+  content: "\276F\276F";
+}
+.calendar .c-btn-next-year,
+.calendar .c-btn-previous-year {
+  letter-spacing: -4px;
+  text-align: left;
+}
+.calendar .c-btn-next-month:hover,
+.calendar .c-btn-previous-month:hover {
+  color: #7EA0E2;
+}
+.calendar .c-btn-next-year:hover,
+.calendar .c-btn-previous-year:hover {
+  color: #6FDF81;
+}
+/** Remove extra buttons when calendar shows multiple months **/
+.calendar .c-first-month .c-btn-next-month,
+.calendar .c-first-month .c-btn-next-year,
+.calendar .c-last-month .c-btn-previous-month,
+.calendar .c-last-month .c-btn-previous-year,
+.calendar .c-middle-month .c-btn-next-month,
+.calendar .c-middle-month .c-btn-next-year,
+.calendar .c-middle-month .c-btn-previous-month,
+.calendar .c-middle-month .c-btn-previous-year {
+  display: none;
+}
+/** Force specific width for month container contents **/
+.calendar .c-days,
+.calendar .c-header,
+.calendar .c-title {
+  width: 154px;
+  display: block;
+  overflow: hidden;
+}
+/** Hide unusable buttons **/
+.calendar.c-disable-next-month-btn .c-btn-next-month,
+.calendar.c-disable-next-year-btn .c-btn-next-year,
+.calendar.c-disable-previous-month-btn .c-btn-previous-month,
+.calendar.c-disable-previous-year-btn .c-btn-previous-year {
+  display: none;
+}
+/** Week columns and day cells **/
+.calendar .c-days span,
+.calendar .c-header span {
+  float: left;
+  margin: 1px;
+}
+.calendar .c-header span {
+  text-align: center;
+  font-weight: bold;
+  width: 20px;
+  padding: 1px 0;
+  color: #666;
+}
+.calendar .c-days span {
+  text-align: right;
+  width: 13px;
+  height: 1.1em;
+  line-height: 1em;
+  padding: 2px 3px 2px 2px;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  color: #999;
+}
+/** Today **/
+.calendar .c-today {
+  text-decoration: underline;
+}
+/** Selected day, when outside the selectable area **/
+.calendar .c-days span.c-selected {
+  border-color: #1072A5;
+  color: #1072A5;
+}
+/** Selected day, when inside the selectable area **/
+.calendar .c-days span.c-selected.c-active {
+  background: #7EA0E2;
+  color: white;
+}
+/** Days between the start and end points on a range, outside of the selectable area **/
+.calendar .c-days span.c-range {
+  background: none;
+  border-color: #6DD4FE;
+}
+/** Days between the start and end points on a range, inside of the selectable area **/
+.calendar .c-days span.c-range.c-active {
+  background: #C4D4F1;
+  border-color: #19AEFE;
+  color: #333;
+}
+/** Selectable but not selected day  **/
+.calendar .c-days span.c-active {
+  border-color: #ddd;
+  background-color: #fff;
+  cursor: pointer;
+  color: #333;
+}
+/** Selectable day, hovered **/
+.calendar .c-days span.c-active:hover {
+  border-color: #666;
+}
+/** Days outside of the month view (before the first day of the month, after the last day of the month) **/
+.calendar .c-days span.c-out-of-month {
+  color: #ddd;
+}
+/** Metal Skin **/
+.calendar {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  -o-border-radius: 0;
+  border-radius: 3px 3px 0 0;
+  padding: 1px;
+  border: 1px solid #bbbbbb;
+}
+.calendar .c-calendar {
+  width: 210px;
+}
+.calendar .c-days,
+.calendar .c-header,
+.calendar .c-title {
+  width: auto;
+}
+.calendar .c-title {
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #393939), color-stop(100%, #202020));
+  background: -webkit-linear-gradient(#393939, #202020);
+  background: -moz-linear-gradient(#393939, #202020);
+  background: -o-linear-gradient(#393939, #202020);
+  background: linear-gradient(#393939, #202020);
+  -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset, 0 1px 1px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset, 0 1px 1px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset, 0 1px 1px rgba(0, 0, 0, 0.3);
+  -webkit-border-radius: 3px 3px 0 0;
+  -moz-border-radius: 3px 3px 0 0;
+  -ms-border-radius: 3px 3px 0 0;
+  -o-border-radius: 3px 3px 0 0;
+  border-radius: 3px 3px 0 0;
+  background-color: #393939;
+  border: 1px solid black;
+  color: #e0e0e0;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.9);
+  padding: 5px;
+  line-height: 25px;
+  height: 25px;
+}
+.calendar .c-title .c-caption {
+  font-weight: bold;
+}
+.calendar .c-title a {
+  background-image: url('data:"image/png";base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAcFJREFUeNrslr9Kw1AUxnuvCRSMEGKldUqhYAlmcOrkIvgc2e2QQl7BsbSL4HMUHOrkA3QRB5cuSRabFwiihdRzIEJo7r9kKWguHEIufF/OPZyb3yG73a51yEVbB17a/gYhRCrar5qKhudz8ArwEjAhniGcCl4sjdwHy1AMXJ7nXS6Xy2/XdT/gdQJxVEej4sOsgG3bx47j6IvFohcEwb2maU+wPRAdn6VJ0/RC5iPsARAQ3/dPwOB2OBy+wFZb2tUFTZIkjzIfpSaEEupQyk4URcrtjpr5fG7KfKjidVlTSm/6/f5nhSu2DsPwTubDTMCyrK9ckMFjCvf8CkQr0QdZms1m8yr1YXU0lOgM4h1ipHpzWBoVH1Lnr/an/oTk39OwSaCZB1QTcHKumxW8WZryHuuvVljI7wnyHLmOfK+p4fpoghMMAKMPgNHr8XhsIFKR+ZJTlzQ4E8BzyvPhJdBGbs9ms3NEqGLJmRqcCWAOOOX5MBNAXmdZ1gF0qn6cq8GZoNvt6pWaEHmN3EZ+qybA0+BMIPKhAsMV8hs5nvO8ZRjGVpJESRPH8ZvQR9LRv+Ud5Vzv1dXwfJp5oJkHfgQYADiTnvJq+mHGAAAAAElFTkSuQmCC');
+  background-repeat: no-repeat;
+  margin-top: 9px;
+}
+.calendar .c-title a:after {
+  content: none;
+}
+.calendar .c-title a.c-btn-previous-month,
+.calendar .c-title a.c-btn-previous-year {
+  margin-left: 5px;
+}
+.calendar .c-title a.c-btn-next-month,
+.calendar .c-title a.c-btn-next-year {
+  margin-right: 5px;
+}
+.calendar .c-title a.c-btn-previous-year {
+  background-position: -16px -16px;
+}
+.calendar .c-title a.c-btn-previous-month {
+  background-position: 0 -16px;
+}
+.calendar .c-title a.c-btn-next-year {
+  background-position: -16px 0;
+}
+.calendar .c-title a.c-btn-next-month {
+  background-position: 0 0;
+}
+.calendar .c-header {
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #222222), color-stop(100%, #555555));
+  background: -webkit-linear-gradient(#222222, #555555);
+  background: -moz-linear-gradient(#222222, #555555);
+  background: -o-linear-gradient(#222222, #555555);
+  background: linear-gradient(#222222, #555555);
+  color: #dadada;
+  text-shadow: 0 1px 0 black;
+}
+.calendar .c-header span {
+  color: #dadada;
+  width: 30px;
+  line-height: 20px;
+  text-transform: uppercase;
+}
+.calendar .c-days span,
+.calendar .c-header span {
+  margin: 0;
+}
+.calendar .c-calendar .c-days span {
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #ffffff));
+  background: -webkit-linear-gradient(#ffffff, #ffffff);
+  background: -moz-linear-gradient(#ffffff, #ffffff);
+  background: -o-linear-gradient(#ffffff, #ffffff);
+  background: linear-gradient(#ffffff, #ffffff);
+  -webkit-box-shadow: 1px 1px 0 white inset;
+  -moz-box-shadow: 1px 1px 0 white inset;
+  box-shadow: 1px 1px 0 white inset;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  -o-border-radius: 0;
+  border-radius: 0;
+  color: lighteb(#666666, 20);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  border-bottom: 1px solid #eeeeee;
+  border-left: 1px solid #eeeeee;
+  width: 23px;
+  height: 23px;
+  line-height: 23px;
+  padding-top: 2px;
+  text-align: center;
+}
+.calendar .c-calendar .c-days span.c-active,
+.calendar .c-calendar .c-days span.c-out-of-month {
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #e7e7e7), color-stop(100%, #d9d9d9));
+  background: -webkit-linear-gradient(#e7e7e7, #d9d9d9);
+  background: -moz-linear-gradient(#e7e7e7, #d9d9d9);
+  background: -o-linear-gradient(#e7e7e7, #d9d9d9);
+  background: linear-gradient(#e7e7e7, #d9d9d9);
+  color: #666666;
+  border-top-color: transparent;
+  border-right-color: transparent;
+  border-bottom: 1px solid #bbbbbb;
+  border-left: 1px solid #bbbbbb;
+}
+.calendar .c-calendar .c-days span.c-active:hover,
+.calendar .c-calendar .c-days span.c-out-of-month:hover {
+  border-color: #888888;
+}
+.calendar .c-calendar .c-days span.c-active.c-range,
+.calendar .c-calendar .c-days span.c-active.c-selected,
+.calendar .c-calendar .c-days span.c-range.c-out-of-month,
+.calendar .c-calendar .c-days span.c-selected.c-out-of-month {
+  -webkit-box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3) inset;
+  -moz-box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3) inset;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3) inset;
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #148ad3), color-stop(100%, #5db8f0));
+  background: -webkit-linear-gradient(#148ad3, #5db8f0);
+  background: -moz-linear-gradient(#148ad3, #5db8f0);
+  background: -o-linear-gradient(#148ad3, #5db8f0);
+  background: linear-gradient(#148ad3, #5db8f0);
+  background-color: #148ad3;
+  border-color: #0b4d76;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.7);
+  color: white;
+}
+.calendar .c-calendar .c-days span.c-active.c-range.c-out-of-month,
+.calendar .c-calendar .c-days span.c-active.c-selected.c-out-of-month,
+.calendar .c-calendar .c-days span.c-range.c-out-of-month,
+.calendar .c-calendar .c-days span.c-selected.c-out-of-month {
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f5f5f5), color-stop(100%, #ececec));
+  background: -webkit-linear-gradient(#f5f5f5, #ececec);
+  background: -moz-linear-gradient(#f5f5f5, #ececec);
+  background: -o-linear-gradient(#f5f5f5, #ececec);
+  background: linear-gradient(#f5f5f5, #ececec);
+  color: #666666;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  background-color: whitesmoke;
+  border-color: #bbbbbb;
+}
+.calendar .c-calendar .c-days span.c-out-of-month {
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f5f5f5), color-stop(100%, #ececec));
+  background: -webkit-linear-gradient(#f5f5f5, #ececec);
+  background: -moz-linear-gradient(#f5f5f5, #ececec);
+  background: -o-linear-gradient(#f5f5f5, #ececec);
+  background: linear-gradient(#f5f5f5, #ececec);
+  border-bottom: 1px solid #bbbbbb;
+  border-left: 1px solid #bbbbbb;
+  color: #666666;
+}
+.calendar .c-calendar.c-first-month .c-title {
+  -webkit-border-radius: 3px 0 0 0;
+  -moz-border-radius: 3px 0 0 0;
+  -ms-border-radius: 3px 0 0 0;
+  -o-border-radius: 3px 0 0 0;
+  border-radius: 3px 0 0 0;
+}
+.calendar .c-calendar.c-middle-month .c-title {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  -o-border-radius: 0;
+  border-radius: 0;
+}
+.calendar .c-calendar.c-last-month .c-title {
+  -webkit-border-radius: 0 3px 0 0;
+  -moz-border-radius: 0 3px 0 0;
+  -ms-border-radius: 0 3px 0 0;
+  -o-border-radius: 0 3px 0 0;
+  border-radius: 0 3px 0 0;
+}
+.calendar .c-separator {
+  background: none;
+  height: 233px;
+  margin: 0;
+  width: 0;
+}
